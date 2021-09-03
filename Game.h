@@ -11,13 +11,14 @@ class Game
 {
 private:
     int panelLength, panelWidth, score;
-    map<char, Point> direction;
+    map<char, Point> directions;
     char lastDir;
     bool gameOver;
     Point fruit;
     Snake snake;
 
     void generateFruit();
+    Point enhanceNewHead(Point newHead);
 
 public:
     bool isGameOver();

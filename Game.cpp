@@ -1,23 +1,5 @@
 #include "Game.h"
 
-void Game::moveSnack(const char dir)
-{
-    if (direction.find(dir) == direction.end())         // if input doesn't equal 'w' or 's' or 'd' or 'a' or ' '
-        gameOver = true;
-
-    Point newHead = snake.getHead() + direction[dir];
-    snake.growSnake(newHead);
-    if (newHead == fruit)
-    {
-        score++;
-        generateFruit();
-    }
-    else
-        snake.eraseTail();
-
-    lastDir = dir;
-}
-
 bool Game::isGameOver()
 {
     return gameOver;
@@ -28,6 +10,46 @@ void Game::generateFruit()
     srand(time(0));
     fruit.setX(1 + (rand() % (panelLength - 2))); // Generate random number between (1) and (length - 2)
     fruit.setY(1 + (rand() % (panelWidth - 2)));  // Generate random number between (1) and (width - 2)
+}
+
+Point Game::enhanceNewHead(Point newHead)
+{
+    if (newHead.getX() == 0)
+        newHead.setX(panelLength - 2);
+
+    else if (newHead.getX() == panelLength - 1)
+        newHead.setX(1);
+
+    else if (newHead.getY() == 0)
+        newHead.setY(panelWidth - 2);
+
+    else if (newHead.getY() == panelWidth - 1)
+        newHead.setY(1);
+
+    return newHead;
+}
+
+void Game::moveSnack(const char dir)
+{
+    if (directions.find(dir) == directions.end()) // if input doesn't equal 'w' or 's' or 'd' or 'a' or ' '
+        gameOver = true;
+
+    Point newHead = snake.getHead() + directions[dir];
+
+    newHead = enhanceNewHead(newHead);
+
+    snake.growSnake(newHead);
+
+    if (newHead == fruit)
+    {
+        score++;
+        generateFruit();
+    }
+
+    else
+        snake.eraseTail();
+
+    lastDir = dir;
 }
 
 void Game::draw()
@@ -53,7 +75,7 @@ void Game::draw()
         }
         cout << endl;
     }
-    cout << "Score: " << score;
+    cout << "\nScore: " << score << endl;
 }
 
 Game::Game()
@@ -63,12 +85,12 @@ Game::Game()
     score = 0;
     gameOver = false;
     lastDir = ' ';
-    direction = {
+    directions = {
         {'w', Point(-1, 0)},
         {'s', Point(+1, 0)},
         {'d', Point(0, +1)},
         {'a', Point(0, -1)},
-        {' ', Point(0, 0)}};         // ' ' is an initial value for starting the game
+        {' ', Point(0, 0)}}; // ' ' is an initial value for starting the game
     snake.getHead().setX(panelLength / 2);
     snake.getHead().setY(panelWidth / 2);
     generateFruit();
