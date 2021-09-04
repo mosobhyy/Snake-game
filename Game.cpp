@@ -1,5 +1,11 @@
 #include "Game.h"
 
+// Check if the new input direction is the opposite of the cuurent
+bool Game::isOppositeDirection(char dir)
+{
+    return (lastDir == 'w' && dir == 's' || lastDir == 's' && dir == 'w' || lastDir == 'd' && dir == 'a' || lastDir == 'a' && dir == 'd');
+}
+
 bool Game::isGameOver()
 {
     return gameOver;
@@ -12,6 +18,7 @@ void Game::generateFruit()
     fruit.setY(1 + (rand() % (panelWidth - 2)));  // Generate random number between (1) and (width - 2)
 }
 
+// To make the panel circular so the snake can enter from any side and out from the opposite side
 Point Game::enhanceNewHead(Point newHead)
 {
     if (newHead.getX() == 0)
@@ -33,6 +40,10 @@ void Game::moveSnack(const char dir)
 {
     if (directions.find(dir) == directions.end()) // if input doesn't equal 'w' or 's' or 'd' or 'a' or ' '
         gameOver = true;
+
+    // Prevent the snake from moving to opposite direction
+    if (isOppositeDirection(dir))
+        return;
 
     Point newHead = snake.getHead() + directions[dir];
 

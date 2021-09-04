@@ -17,6 +17,7 @@ private:
     Point fruit;
     Snake snake;
 
+    bool isOppositeDirection(char dir);
     void generateFruit();
     Point enhanceNewHead(Point newHead);
 
