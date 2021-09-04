@@ -26,6 +26,11 @@ bool Point::operator==(Point const &point)
     return (this->x == point.getX() && this->y == point.getY());
 }
 
+bool Point::operator!=(Point const &point)
+{
+    return !(*this == point);
+}
+
 Point Point::operator+(Point const &point)
 {
     Point result(x + point.getX(), y + point.getY());

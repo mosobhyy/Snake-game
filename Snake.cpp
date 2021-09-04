@@ -13,7 +13,7 @@ int Snake::getLength()
 bool Snake::isBody(Point point)
 {
     for (auto it : body)
-        if (it == point)
+        if (it == point && point != getHead())
             return true;
     return false;
 }

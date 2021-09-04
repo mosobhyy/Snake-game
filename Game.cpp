@@ -49,6 +49,10 @@ void Game::moveSnack(const char dir)
 
     newHead = enhanceNewHead(newHead);
 
+    // game over if snake eat itself
+    if(snake.isBody(newHead))
+        gameOver = true;
+
     snake.growSnake(newHead);
 
     if (newHead == fruit)

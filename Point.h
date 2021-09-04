@@ -17,6 +17,8 @@ public:
 
     bool operator==(Point const &point);
 
+    bool operator!=(Point const &point);
+
     Point operator+(Point const &point);
 
     Point(int x, int y);
