@@ -13,6 +13,7 @@ private:
     vector<Point> body;
 public:
     Point& getHead();
+    int getLength();
     bool isBody(Point point);
     void growSnake(Point newHead);
     void eraseTail();

@@ -42,7 +42,7 @@ void Game::moveSnack(const char dir)
         gameOver = true;
 
     // Prevent the snake from moving to opposite direction
-    if (isOppositeDirection(dir))
+    if (isOppositeDirection(dir) && snake.getLength() > 1)
         return;
 
     Point newHead = snake.getHead() + directions[dir];

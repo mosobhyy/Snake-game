@@ -5,6 +5,11 @@ Point& Snake::getHead()
     return *body.begin();
 }
 
+int Snake::getLength()
+{
+    return body.size();
+}
+
 bool Snake::isBody(Point point)
 {
     for (auto it : body)
