@@ -17,6 +17,7 @@ private:
     Point fruit;
     Snake snake;
 
+    // Private methods to use inside the class only
     bool isOppositeDirection(char dir);
     void generateFruit();
     Point enhanceNewHead(Point newHead);

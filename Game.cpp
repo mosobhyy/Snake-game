@@ -49,8 +49,8 @@ void Game::moveSnack(const char dir)
 
     newHead = enhanceNewHead(newHead);
 
-    // game over if snake eat itself
-    if(snake.isBody(newHead))
+    // The game ends if the snake eats itself
+    if (snake.isBody(newHead))
         gameOver = true;
 
     snake.growSnake(newHead);
@@ -90,7 +90,7 @@ void Game::draw()
         }
         cout << endl;
     }
-    cout << "\nScore: " << score << endl;
+    cout << "\nScore: " << score << "\n\n";
 }
 
 Game::Game()
@@ -100,13 +100,18 @@ Game::Game()
     score = 0;
     gameOver = false;
     lastDir = ' ';
+
     directions = {
         {'w', Point(-1, 0)},
         {'s', Point(+1, 0)},
         {'d', Point(0, +1)},
         {'a', Point(0, -1)},
         {' ', Point(0, 0)}}; // ' ' is an initial value for starting the game
+
+    // Set the position of the snake in the middle of the panel as default
     snake.getHead().setX(panelLength / 2);
     snake.getHead().setY(panelWidth / 2);
+
+    // Set the position of the fruit randomly
     generateFruit();
 }

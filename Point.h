@@ -1,11 +1,11 @@
 #ifndef SNAKE_POINT_H
 #define SNAKE_POINT_H
 
-
 class Point
 {
 private:
     int x, y;
+
 public:
     int getX() const;
 
@@ -22,8 +22,6 @@ public:
     Point operator+(Point const &point);
 
     Point(int x, int y);
-
 };
-
 
 #endif //SNAKE_POINT_H

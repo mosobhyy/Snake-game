@@ -11,14 +11,14 @@ class Snake
 {
 private:
     vector<Point> body;
+
 public:
-    Point& getHead();
+    Point &getHead();
     int getLength();
     bool isBody(Point point);
     void growSnake(Point newHead);
     void eraseTail();
     Snake(Point head);
 };
-
 
 #endif //SNAKE_SNAKE_H

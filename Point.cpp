@@ -20,7 +20,6 @@ void Point::setY(int y)
     Point::y = y;
 }
 
-
 bool Point::operator==(Point const &point)
 {
     return (this->x == point.getX() && this->y == point.getY());
@@ -37,6 +36,8 @@ Point Point::operator+(Point const &point)
     return result;
 }
 
+// Initialize the point as (0, 0) when using the default constructor
+// and as (x, y) when using the parameterized constructor
 Point::Point(int x = 0, int y = 0)
 {
     setX(x);
